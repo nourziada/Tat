@@ -54,7 +54,7 @@
 
                 <h1 class="h3">{{Auth::user()->name}}</h1>
 
-                <p><a href="">Change password</a></p>
+                <p><a href="{{route('show.admin.password')}}">Change password</a></p>
 
                 <p><a href="{{route('logout')}}">LogOut</a></p>
             </div>
@@ -74,26 +74,42 @@
                 </form>
 
                 <ul>
-                    <li><span class="glyphicon glyphicon-home"></span><a href="index.html">Home Page</a></li>
-                    <li><span class="glyphicon glyphicon-cog"></span><a href="options.html">Site Information</a></li>
-                    <li><span class="glyphicon glyphicon-user"></span><a href="">Mange Users</a>
-                        <ul class="drop_main_menu">
-                            <li><a href="add_new_user.html">Add new user</a></li>
-                            <li><a href="view_all_users.html">View all users</a></li>
-                        </ul>
+
+                    <li class="{{ Request::is('admin') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-home"></span>
+                        <a href="{{route('admin.home')}}">Home Page</a>
                     </li>
-                    <li><span class="glyphicon glyphicon-edit"></span><a href="">Mange Topics</a>
-                        <ul class="drop_main_menu">
-                            <li><a href="add_new_topic.html">Add new topic</a></li>
-                            <li><a href="view_all_topics.html">View all topics</a></li>
-                        </ul>
+
+                    <li class="{{ Request::is('admin/category') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-th-large"></span>
+                        <div id="myDropdown">
+                            <a href=""  class="dropdown-toggle" data-toggle="dropdown">Categories</a>
+                            <ul class="drop_main_menu">
+                                <li><a href="{{route('category.create')}}">Add New Category</a></li>
+                                <li><a href="{{route('category.index')}}">Show All Categories</a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li><span class="glyphicon glyphicon-picture"></span><a href="">Photo Album</a>
-                        <ul class="drop_main_menu">
-                            <li><a href="add_new_photo.html">Add new photo</a></li>
-                            <li><a href="view_all_photos.html">View all photos</a></li>
-                        </ul>
+
+
+                    <li class="{{ Request::is('admin/advertising') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-bookmark"></span>
+                        <a href="{{route('show.admin.ads')}}">All Advertising</a>
                     </li>
+
+                    <li class="{{ Request::is('admin/request') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        <a href="{{route('show.admin.request')}}">All Requests</a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                        <a href="{{route('show.admin.setting')}}">WebSite Settings</a>
+                    </li>
+
+                   
+
+
                 </ul>
             </div>
         </div>

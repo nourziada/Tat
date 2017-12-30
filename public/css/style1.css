@@ -1,0 +1,215 @@
+.nav-tabs.nav_add_page>li.active>a, .nav-tabs.nav_add_page>li.active>a:focus, .nav-tabs.nav_add_page>li.active>a:hover {
+    color: #fff !important;
+    cursor: default;
+    background-color: #005a7e !important;
+    border: 1px solid #fff !important;
+    border-radius: 0 !important;
+   
+}
+ul.nav-new li a
+{
+    background-color: #0d7c8d;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    padding: 15px 12px;
+    text-transform: uppercase;
+    border-radius: 0 !important;
+    margin-left:5px;
+}
+ul.nav-new li a:hover
+{
+	background-color: #005a7e !important;
+	color: #fff !important;
+}
+.bg-style
+{
+	background: rgba(255, 255, 255, 0.9);
+    padding: 39px;
+}
+.table
+{
+        margin: auto !important;
+        border-collapse: initial;
+}
+
+.margin-t
+{
+    margin-top: 30px;
+}
+
+/*img
+{
+    max-width: -webkit-fill-available;
+}
+*/
+.add_table_list 
+{ 
+    border: 1px solid #a8a8a8 !important;
+}
+.flipkart-navbar-button
+ {
+    background-color: #00a89c !important;
+    border: 1px solid #00a89c !important;
+}
+@media (max-width: 767px)
+{
+.nav-tabs.massage_box
+{
+        margin-bottom: 20px !important;
+}
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th 
+{
+    
+    vertical-align: unset !important;
+}
+
+.padding-0
+{
+    padding: 0;
+}
+.share-p
+{
+    font-size: 14px;
+}
+.img-hw
+{
+    height: 70px !important;
+    width: 70px !important;
+}
+
+.checkbox label.abc:before {
+    position: absolute;
+    color: #9e9e9e;
+    font-size: 16px;
+    content: "\f096" !important;
+    font-family: 'FontAwesome';
+    left: 0;
+    top: 0;
+}
+#accordion.panel-group.tashleeh_panel label.abc:before {
+    position: static;
+    color: #9e9e9e;
+    font-size: 16px;
+    /*content: "\f096" !important;*/
+    font-family: 'FontAwesome';
+    left: 0;
+    top: 0;
+}
+#accordion .panel-body .checkbox1 label.checked:before, .checkbox1 label.checked:before
+ {
+    content: "\f046 " !important;
+    color: #00a651 !important;
+}
+a, .nav li a:hover, .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover, .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover, .language-dropdown a:hover, .language-dropdown i.fa-globe, .sign-in li i, .nav-right .dropdown-menu li a:hover, .sign-in li a:hover, .category-item:hover .category-quantity, .category-item:hover .category-title, .ad-info .item-cat a:hover, .ad-info .item-price, .ad-meta .meta-content a:hover, .ad-meta .user-option a:hover, .owl-carousel .owl-next:hover, .owl-carousel .owl-prev:hover, #view-ad h1, #services-ad .single-service li a:hover, .recommended-cta .single-cta a:hover, #accordion .panel-body label.checked:before, .slider-text h2, .slider-text span.icon a strong, .slider-text span a:hover, .slider-text a:hover, .add-image .fa-upload, .add-image label.upload-image:hover:before, .adpost-details .agreement label a:hover, .quick-rules .lead a:hover, .quick-rules li:before, .congratulations i, .congratulations h2, .user-account h2, .user-account .checkbox label:hover, .forgot-password a:hover, .next-stap h2 span, .next-stap .btn:hover, .next-stap .btn-info:hover, .ad-profile .user h2 a, .ad-profile .favorites-user a, .ad-profile .favorites-user small:hover, .ad-profile .user-menu li.active a, .ad-profile .user-menu li a:hover, .profile a.btn:hover, .profile a.btn:hover, .faq-page .panel-heading i:hover, .faq-page .panel-heading .panel-title:hover, .faq-page .active-faq.panel-heading .panel-title, .feedback .btn:hover, .footer-bottom a:hover, .tab-manu .nav-tabs li a:hover, .tab-manu .nav-tabs li.active a, #accordion .panel-body a:hover, #accordion .panel-body a:hover i, .contact-info address a:hover, .select-category li:before, .post-option li:hover a, .post-option li a:hover, .post-option li.active a, .post-option li.link-active a, #accordion .panel-body h5 i, #accordion a.see-more:hover, .postdetails li a:hover, .postdetails li.active a, .postdetails .edit:hover, .short-info li a:hover, .short-info li a span, .checkbox label.checked:before, .user-account .checkbox .checked, #home-section h1, .category-menu li a:hover, .home-banner .dropdown.category-dropdown a:hover, .home-banner .contact-form .form-control:hover, #countdown li span, .pricing-section .pric li i.fa-check, .found-section h1, .cta.cta-two h3, .workshop-traning .workshop h3 a:hover, .job-ad-item .ad-info span a:hover, .job-ad-item a:hover, .category-dropdown a:hover, .dropdown-menu>li>a:hover, .single-service li a:hover, .explore-nearby .ad-info h4 a:hover, .company-info li a:hover, .job-short-info li a:hover, .workshop-traning .btn.btn-primary:hover, .see-more button:hover, .buttons a.btn:hover, .user-account .nav-tabs>li.active>a, .resume-content .icons, .profile-info address a:hover {
+    color: #00a651;
+}
+.modl-c
+{
+        padding-bottom: 50px !important;
+}
+
+.sub-ct
+{
+    border-left: 1px dashed #ccc !important;
+}
+.pnl-head
+{
+    background-color: #69bdae !important;
+    border:0 !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+    font-size: 20px !important;
+}
+.style-9
+{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    padding-left: 0;
+    margin-bottom: 40px;
+}
+.style-99
+{
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+    margin-top: 50px;
+}
+.mb-0
+{
+    margin-bottom: 0 !important;
+}
+.btn-p
+{
+        padding: 5px 17px !important;
+        margin: 2px;
+
+}
+.pdt
+{
+        padding-top: 15px;
+}
+.btn-pp
+{
+    background: transparent;
+    color: #0072bc;
+    font-size: 16px;
+    padding: 0 23px;
+}
+.pyment
+{
+    border: 1px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+}
+.pyment:hover
+{
+    border-color: #00a651;
+}
+.srch
+{
+        border-radius: 0;
+}
+.txt-ltr
+{
+    direction: ltr;
+}
+.txt-ltr-r
+{
+    direction: ltr;
+    text-align: right;
+}
+.f-lok
+{
+    font-size: 112px;
+    color: #00a651;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.f-lok
+{
+    color: #ffab00 !important;
+}
+ul.usr-cht
+{
+        text-align: left;
+}
+.cht-col
+{  
+    border: 1px dashed #ccc;
+    padding: 0 20px 20px 20px;
+    margin-right: 20px;
+    margin-top: 45px;
+}
+
+
+
+
+
+
+
+
+
+

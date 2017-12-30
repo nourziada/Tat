@@ -9,6 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER ='0';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function request(){
+        return $this->hasOne('App\Request');
+    }
+
+    public static  function generateVerificationToken(){
+        return str_random(40);
+    }
 }

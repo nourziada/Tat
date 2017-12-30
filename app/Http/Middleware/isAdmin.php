@@ -18,8 +18,10 @@ class isAdmin
     {
         if (Auth::user() &&  Auth::user()->admin == 1) {
             return $next($request);
+        }else {
+            return redirect()->route('index.home');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('admin.home');
     }
 }

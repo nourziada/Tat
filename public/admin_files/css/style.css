@@ -287,6 +287,10 @@ body {
     position: relative;
 }
 
+.active {
+    background-color: #2980b9 !important;
+}
+
 .main_sidebar_wrapper li:hover {
     background-color: #2980b9;
 }
@@ -337,7 +341,7 @@ body {
 .search_box .btn {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: 0 none;
-    left: -2px;
+    right: -2px;
     position: absolute;
     top: 0px;
 }
@@ -387,7 +391,7 @@ body {
     font-family: tahoma;
     font-size: 14px;
     height: 18px;
-    left: 10px;
+    right: 10px;
     position: absolute;
     text-align: center;
     top: 15px;

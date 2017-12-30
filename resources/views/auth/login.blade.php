@@ -1,59 +1,58 @@
-<!DOCTYPE html>
-<html lang="ar"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LOGIN | Admin panel</title>
-    <link href="{{asset('admin_files/login_files/bootstrap.css')}}" rel="stylesheet">
-    <link href="{{asset('admin_files/login_files/icon.css')}}" rel="stylesheet">
-    <link href="{{asset('admin_files/login_files/style.css')}}" rel="stylesheet">
-    <link href="{{asset('admin_files/login_files/ar.css')}}" rel="stylesheet" class="lang_css arabic">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body style="background-color: #252830;">
+@extends('layouts.frontend')
 
-    <div class="login_container">
-        <form method="POST" action="{{ route('login') }}">
-            {{ csrf_field() }}
-            <h1 class="heading_title">Login Admin Panel</h1>
+@section('content')
 
-            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input class="form-control" id="exampleInputEmail1" placeholder="E-Mail" type="email" name="email" value="{{ old('email') }}" required>
+<section id="main" class="clearfix user-page">
+        <div class="container">
+            <div class="row text-center">
+                <!-- user-login -->         
+                <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <div class="user-account">
+                        <h2>User login</h2>
+                        <!-- form -->
+                        <form name="login_form" id="login_form" method="POST" action="{{ route('login') }}">
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
+                        {{ csrf_field() }}
 
-            </div>
-            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" name="password" required>
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
-            <div class="checkbox">
-                <label>
-                   
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">LOGIN</button>
-        </form>
-    </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <input id="password" type="password" class="form-control" name="password" required>
 
-    <h3 class="text-center" style="color: #337ab7;">Login to Admin Panel</h3>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <button type="submit" class="btn">log in</button>
+                        </form><!-- form -->
+                    
+                        <!-- forgot-password -->
+                        <div class="user-option">
+                            <div class="checkbox pull-left">
+                                <label for="logged"><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="logged"> Save login data</label>
+                            </div>
+                            <div class="pull-right forgot-password">
+                                <a href="forgot_password.php">did you forget your password</a>
+                            </div>
+                        </div><!-- forgot-password -->
+                        
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <a href="signup.php" class="btn-primary">Create a new account</a>
+                </div><!-- user-login -->
+            </div><!-- row -->  
+        </div><!-- container -->
+    </section>
 
-
-
-</body>
-</html>
+@stop

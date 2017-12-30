@@ -17,7 +17,39 @@ class UsersTableSeeder extends Seeder
         		'name' => 'Admin',
         		'email' => 'admin@admin.com',
         		'password' => bcrypt('password'),
-        		'admin' => 1
+        		'admin' => 1,
+                'phone' => '0599691321', 
+                'type' => 1,
+                'verified' => 1,
+                'verification_token' => null
+
         	]);
+
+
+        App\User::create(
+            [
+                'name' => 'Nour Ziada',
+                'email' => 'nour@nour.com',
+                'password' => bcrypt('password'),
+                'admin' => 0,
+                'phone' => '0599691321', 
+                'type' => 1,
+                'verified' => 1,
+                'verification_token' => null
+
+            ]);
+
+        App\User::create(
+            [
+                'name' => 'Hamza Ahmad',
+                'email' => 'hmza@hmza.com',
+                'password' => bcrypt('password'),
+                'admin' => 0,
+                'phone' => '0599691321', 
+                'type' => 1,
+                'verified' => 0,
+                'verification_token' => User::generateVerificationToken(),
+
+            ]);
     }
 }
