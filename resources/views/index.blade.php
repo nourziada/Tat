@@ -38,7 +38,7 @@
                             @foreach($featuredAds as $ads)
                             <div class="row pt-10 pb-10 post">
                                 <div class="col-sm-10 col-xs-8">
-                                    <a class="ads-tap-title" href="#"><h3>{{$ads->title}}</h3></a>
+                                    <a class="ads-tap-title" href="{{route('ads.show',['id' => $ads->id])}}"><h3>{{$ads->title}}</h3></a>
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <a class="city" href="#"><i class="fa fa-map-marker"></i> {{$ads->city}}</a>
@@ -46,7 +46,7 @@
                                         <div class="col-xs-6">
                                             <div class="post-time"><p>{{$ads->created_at->diffForHumans()}}</p></div>
 
-                                            <a href="#" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }} </a>
+                                            <a href="{{route('show.categories.ads',['id' => $ads->category_id])}}" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }} </a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
 
                                		<div class="row pt-10 pb-10 post">
                                         <div class="col-sm-10 col-xs-8">
-                                            <a class="ads-tap-title" href="#"><h3>{{$ads->title}}</h3></a>
+                                            <a class="ads-tap-title" href="{{route('ads.show',['id' => $ads->id])}}"><h3>{{$ads->title}}</h3></a>
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <a class="city" href="#"><i class="fa fa-map-marker"></i> {{$ads->city}}</a>

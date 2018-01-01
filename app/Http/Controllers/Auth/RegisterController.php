@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/verification';
 
     /**
      * Create a new controller instance.
@@ -51,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'phone' => 'required|unique:users',
         ]);
     }
 
@@ -62,10 +65,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $verificationToken = User::generateVerificationToken();
+        $email = $data['email'];
+
+        $sent = Mail::send('emailVerification', ['name' => $data['name'], 'verificationToken' => $verificationToken , ], function ($message) use ($email)
+        {
+
+            $message->from('no-replay@tat.com' , 'no-replay TAT');
+
+            $message->to($email,$name = null);
+
+            $message->subject("Verification Code From TAT");
+
+        });
+
+        Session::flash('success','Done! Registration Done Successfuly , Verifie your Account by your email');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'type' => $data['usertype'],
+            'verified' => 0,
+            'verification_token' => $verificationToken,
         ]);
+
+    
     }
 }

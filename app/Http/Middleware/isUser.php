@@ -9,10 +9,10 @@ class isUser
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->admin == 0) {
+        if (Auth::user() &&  Auth::user()->verified == 1) {
                 return $next($request);
         }else {
-            return redirect()->route('index.home');
+            return redirect()->route('show.verification');
         }
 
         return redirect()->route('index.home');

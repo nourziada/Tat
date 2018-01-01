@@ -428,7 +428,6 @@ textarea {
 	border-radius: 0;
 	font-family: 'MyriadPro-Regular', sans-serif;
 	border: none;
-	margin-left: -4px;
 }
 
 .banner-form .form-control, 
@@ -1685,7 +1684,8 @@ transform: scale(1.05) rotate(2deg);
 }
 
 #product-carousel .carousel-indicators {
-	bottom:-140px;
+	bottom:-55px;
+	left: 50px !important;
 }
 
 #product-carousel .carousel-indicators li,

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Theme Region">
     <meta name="description" content="">
-    <title>TAT | Index‎</title>
+    <title>{{ $pageTitle }}</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/style@tashleeh.css')}}">
     <link rel="stylesheet" href="{{asset('css/jquery-ui.css')}}">
+    <link href="{{asset('css/toastr.css')}}" rel="stylesheet">
     <link href="{{asset('css/toastr.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/space.css')}}" rel="stylesheet">
     <link href="{{asset('css/costume.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/slidr.css')}}">
     <!-- font -->
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet'
@@ -102,22 +104,62 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
 
-                        <li><a href="all-categories.php">categories</a></li>
+                        <li><a href="{{route('show.categories')}}">categories</a></li>
                         <li><a href="signin.php">advertisement</a></li>
 
-                        <li><a href="contact-us.php">Contact us</a></li>
+                        <li><a href="{{route('show.contact')}}">Contact us</a></li>
                     </ul>
                 </div>
             </div>
             <!-- nav-right -->
             <div class="nav-right">
+
+            @guest
                 <ul class="sign-in">
                     <li><i class="fa fa-user"></i></li>
                     <li><a href="{{route('login')}}"> Log in </a></li>
-                    <li><a href="">Sign up</a></li>
+                    <li><a href="{{route('register')}}">Sign up</a></li>
                 </ul>
+            @else
+                <ul class="sign-in no-back">
+                    <li><i class="fa fa-user"></i></li>
+                    <li><div class="dropdown">
+                            <button class="dropbtn">
+                                <strong>{{ Auth::user()->name}}</strong>
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-content">
+                                <h4 class="no-margin"><span class="glyphicon glyphicon-list"></span>&nbsp; My Accounts
+                                </h4>
+                                <a href="#">All ads</a>
+                                <a href="#">New ads</a>
+                                <a href="#">Correspondence</a>
+                                <a href="#">Payments</a>
+                                <a href="#" class="drop-border-bottom" style="padding-bottom: 10px;">Settings</a>
+                                <h4 class="no-margin"><span class="glyphicon glyphicon-star-empty"></span>&nbsp; Favorites</h4>
+                                <a href="#">My favorite ads</a>
+                                <!--<a href="#">Searches</a>-->
+
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <h5><span class="glyphicon glyphicon-log-out"></span>&nbsp; logout</h5>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+
+                                
+                                    
+                                </a>
+                            </div>
+                        </div></li>
+                </ul>
+            @endguest    
                 <!-- sign-in -->
-                <a href="signin.php?ad_post=1" class="btn">Post your ad</a>
+
+                
+            <a href="{{route('ads.create')}}" class="btn">Post your ad</a>
+                
             </div>
             <!-- nav-right -->
         </div>
@@ -133,6 +175,33 @@
     @yield('content')
 
 <!-- main -->
+
+
+<!-- Modal -->
+
+@if(Session::has('infoData'))
+    
+    
+<div id="useragreeModel" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content modl-c">
+                <div class="modal-header">
+                    <button type="button" class="close close-butn" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Attention</h4>
+                </div>
+                <div class="modal-body" id="group-content">
+                    <h4 class="modal-title">{{ Session::get('infoData') }}</h4>
+                </div>
+                
+                <div class="modal-footer mf">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+     </div>
+@endif
+<!-- End Modal -->     
 
 
 <!-- footer -->
@@ -255,6 +324,7 @@
 
 <!-- JS -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
 <script src="{{asset('js/modernizr.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
@@ -263,8 +333,20 @@
 <script src="{{asset('js/jquery.countdown.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
 <script src="{{asset('js/switcher.js')}}"></script>
-<script src="{{asset('js/jquery-ui.js')}}"></script>
+
 <script src="{{asset('js/toastr.min.js')}}"></script>
+
+<script type="text/javascript">
+
+    @if(Session::has('success'))
+        toastr.success('{{ Session::get('success') }}')
+    @endif
+
+    @if(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}')
+    @endif
+    
+</script>
 <script>
     $(function () {
         $("#skills").autocomplete({
@@ -313,6 +395,68 @@
 
 
 </script>
+
+     <script type="text/javascript">
+        $(document).ready(function(){
+            $('#useragreeModel').modal('toggle');
+        }); 
+    </script>
+
+    <script type="text/javascript">
+    $(document).on('change', '.identity_img',function(){
+        var $this = $(this);
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader)
+            return; // no file selected, or no FileReader support
+
+        if (/^image/.test(files[0].type)) { // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+
+            reader.onloadend = function() { // set image data as background of div
+
+             $this.siblings().attr("src", this.result);
+              
+             $('<span class="flag_remove fa fa-close"></span>').insertBefore($this);
+            }
+        }
+    });
+    $(document).on('click', '.flag_remove',function (event) {    
+       var $this = $(this);
+       event.preventDefault();
+       // $this.closest('.upload-image').find('img').remove();  
+       $this.closest('.upload-image').find('img').removeAttr('src');  
+       $this.closest(".flag_remove").remove();
+       // $($this.parent('.upload-image')).appendTo('<img src="" class="lisitingpreview" alt="">');
+       // $('<img src="" class="lisitingpreview" alt="">').appendTo($(this).parent('.upload-image'));      
+    });
+    </script>
+
+        <script>
+    function textCounter(field,field2,maxlimit){
+     var countfield = document.getElementById(field2);
+     document.getElementById('count').innerHTML = (5000 - field.value.length)+" characters left ";
+     if ( field.value.length > maxlimit ) {
+      field.value = field.value.substring( 0, maxlimit );
+      return false;
+     } else {
+      countfield.value = maxlimit - field.value.length;
+     }
+    }
+      
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#price").slider();
+            $("#price").on("slide", function (slideEvt) {
+                $("#price_min").val(slideEvt.value[0]);
+                $("#price_max").val(slideEvt.value[1]);
+                $(".custom-button").show();
+            });
+        });
+    </script>
+
 </body>
 
 </html>

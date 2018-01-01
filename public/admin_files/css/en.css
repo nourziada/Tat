@@ -71,3 +71,14 @@ html, body {
 .drop_main_menu::before {
     right: 10px !important;
 }
+
+.badge-light {
+    float: right !important;
+    padding: 6px;
+    margin: 0px;
+    font-size: 15px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+}

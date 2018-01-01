@@ -17,11 +17,11 @@ class CreateAdsTable extends Migration
             $table->increments('id');
             $table->text('title');
             $table->string('image_1');
-            $table->string('image_2');
-            $table->string('image_3');
-            $table->string('image_4');
+            $table->string('image_2')->nullable();
+            $table->string('image_3')->nullable();
+            $table->string('image_4')->nullable();
             $table->string('type');
-            $table->string('price');
+            $table->integer('price')->unsigned();
             $table->longText('desc');
             $table->integer('views')->default(0);
             $table->string('city');

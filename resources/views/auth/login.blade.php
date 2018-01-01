@@ -41,7 +41,7 @@
                                 <label for="logged"><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="logged"> Save login data</label>
                             </div>
                             <div class="pull-right forgot-password">
-                                <a href="forgot_password.php">did you forget your password</a>
+                                <a href="{{route('password.request')}}">did you forget your password</a>
                             </div>
                         </div><!-- forgot-password -->
                         
@@ -49,7 +49,7 @@
                             
                         </div>
                     </div>
-                    <a href="signup.php" class="btn-primary">Create a new account</a>
+                    <a href="{{route('register')}}" class="btn-primary">Create a new account</a>
                 </div><!-- user-login -->
             </div><!-- row -->  
         </div><!-- container -->

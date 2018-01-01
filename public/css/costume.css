@@ -84,6 +84,18 @@ a:hover, a:focus, input:focus{
     padding: 20px 15px;
     font-size: 39px;
 }
+.dropdown-content h4{
+    text-align: left;
+}
+.dropdown-content h5{
+    text-align: left;
+}
+.agreement.checkbox label:before {
+    top: 2px;
+}
+.adpost-details .agreement label {
+    margin-bottom: 12px !important;
+}
 @media only screen and (max-width : 480px) {
     .city,
     .post-time p,

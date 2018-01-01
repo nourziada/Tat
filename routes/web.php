@@ -12,17 +12,65 @@ Route::get('/','FrontEnd\HomeController@showIndex')->name('index.home');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::post('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
     
-    /*
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Auth\RegisterController@register');
-    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-    */
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
 
+/*
+|-----------------------
+| Password Reset Routes
+|-----------------------
+*/
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+/*
+|-----------------------
+| Verification Routes
+|-----------------------
+*/
+Route::get('/verification', 'Auth\VerificationController@showVerification')->name('show.verification');
+Route::post('/verification', 'Auth\VerificationController@verification')->name('verification.user');
+
+Route::post('/verification/resend', 'Auth\VerificationController@reSendVerificationToken')->name('verification.resend');
+/*
+|-----------------------
+| Advertising Routes
+|-----------------------
+*/
+
+Route::resource('/ads','FrontEnd\AdsController');
+
+
+/*
+|-----------------------
+| Favorite Routes
+|-----------------------
+*/
+
+Route::resource('/favorite','FrontEnd\FavoriteController');
+
+
+/*
+|-----------------------
+| Categories Routes
+|-----------------------
+*/
+
+Route::get('/categories','FrontEnd\CategoryController@showAllCategory')->name('show.categories');
+
+Route::get('/categories/ads/{id}','FrontEnd\CategoryController@showAllCategoryAds')->name('show.categories.ads');
+
+/*
+|-----------------------
+| Contact Us Routes
+|-----------------------
+*/
+Route::get('/contact','FrontEnd\HomeController@showContactForm')->name('show.contact');
+Route::post('/contact/send','FrontEnd\HomeController@sendContactForm')->name('send.contact');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -66,6 +114,16 @@ Route::prefix('admin')->group(function(){
     Route::get('/request' ,'Admin\RequestsController@showAdminRequests')->name('show.admin.request');
     Route::post('/request/delete/{id}' ,'Admin\RequestsController@deleteAdminRequests')->name('delete.admin.request');
     Route::get('/request/search' ,'Admin\RequestsController@showAdminRequestsSearch')->name('show.admin.request.search');
+
+    /*
+    |-----------------------
+    | Reports Routes
+    |-----------------------
+    */
+
+    Route::resource('/report','Admin\ReportsController');
+
+
 
     /*
     |-----------------------

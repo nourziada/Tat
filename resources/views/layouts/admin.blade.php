@@ -56,7 +56,14 @@
 
                 <p><a href="{{route('show.admin.password')}}">Change password</a></p>
 
-                <p><a href="{{route('logout')}}">LogOut</a></p>
+                <p>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                         logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </p>
             </div>
             
         </div>
@@ -100,6 +107,18 @@
                     <li class="{{ Request::is('admin/request') ? 'active' : '' }}">
                         <span class="glyphicon glyphicon-bullhorn"></span>
                         <a href="{{route('show.admin.request')}}">All Requests</a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/report') ? 'active' : '' }}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <a href="{{route('report.index')}}"><span class="badge badge-light" style="float: right !important;
+    padding: 6px;
+    margin: 0px;
+    font-size: 15px;
+    padding-left: 11px;
+    padding-right: 11px;
+    padding-top: 5px;
+    padding-bottom: 7px;">{{$reportsAll->count()}}</span> All Reports </a>
                     </li>
 
                     <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
