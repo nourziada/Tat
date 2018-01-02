@@ -103,9 +103,10 @@
             <div class="navbar-left">
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li><a href="{{route('request.create')}}" class="btn d-block poss ml-0 mt-10 text-capitalize">Add your request</a></li>
 
                         <li><a href="{{route('show.categories')}}">categories</a></li>
-                        <li><a href="signin.php">advertisement</a></li>
+                        <li><a href="{{route('show.categories.ads',['id' => $firstCategory->id,'type' => 1])}}">advertisement</a></li>
 
                         <li><a href="{{route('show.contact')}}">Contact us</a></li>
                     </ul>
@@ -131,13 +132,18 @@
                             <div class="dropdown-content">
                                 <h4 class="no-margin"><span class="glyphicon glyphicon-list"></span>&nbsp; My Accounts
                                 </h4>
-                                <a href="#">All ads</a>
-                                <a href="#">New ads</a>
-                                <a href="#">Correspondence</a>
-                                <a href="#">Payments</a>
-                                <a href="#" class="drop-border-bottom" style="padding-bottom: 10px;">Settings</a>
+
+                                @if(Auth::user()->type == 1)
+                                    <a href="{{route('ads.index')}}">My ads</a>
+                                    <a href="{{route('ads.create')}}">New ads</a>
+                                @elseif(Auth::user()->type == 0)
+                                    <a href="{{route('show.myrequests')}}">My Requests</a>
+                                    <a href="{{route('request.create')}}">New Request</a>
+                                @endif
+
+                                <a href="{{route('profile.show')}}" class="drop-border-bottom" style="padding-bottom: 10px;">Settings</a>
                                 <h4 class="no-margin"><span class="glyphicon glyphicon-star-empty"></span>&nbsp; Favorites</h4>
-                                <a href="#">My favorite ads</a>
+                                <a href="{{route('favorite.index')}}">My favorite ads</a>
                                 <!--<a href="#">Searches</a>-->
 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

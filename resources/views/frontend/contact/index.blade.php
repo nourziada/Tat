@@ -21,7 +21,7 @@
 					<div class="col-sm-4">
 						<div class="contact-info">
 
-							<h2>{{$settings->desc}}</h2>
+							<h2 class="text-justify" style="font-size: 16px !important;">{{$settings->desc}}</h2>
 							<address>
 								<p><strong>  </strong></p>
 								<p><strong>Email: </strong><a href="mailto:{{$settings->email}}">{{$settings->email}}</a></p>

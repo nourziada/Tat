@@ -5,19 +5,7 @@
 <section id="main" class="clearfix home-default">
     <div class="container">
 
-        <!-- banner -->
-        <div class="banner-section text-center">
-            <div class="banner-form">
-                <form action="categories.php" name="search_form" id="search_form" method="get">
-                    <input type="text" class="form-control form-control ui-widget" id="skills" name="query"
-                           placeholder="Find a specific product" autocomplete="off">
-                    <button type="submit" class="form-control hidden-xs srch" value="Search">Search</button>
-                    <button type="submit" class="visible-xs srch" value="Search"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-            <!-- banner-form -->
-        </div>
-        <!-- banner -->
+        @include('includes.search')
         <!-- main-content -->
         <div class="main-content">
             <!-- row -->
@@ -39,19 +27,20 @@
                             <div class="row pt-10 pb-10 post">
                                 <div class="col-sm-10 col-xs-8">
                                     <a class="ads-tap-title" href="{{route('ads.show',['id' => $ads->id])}}"><h3>{{$ads->title}}</h3></a>
+
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <a class="city" href="#"><i class="fa fa-map-marker"></i> {{$ads->city}}</a>
+                                            <span class="city" style="margin-top: 26px;color: #076daf"><i class="fa fa-map-marker"></i> {{$ads->city}}</span>
                                         </div>
                                         <div class="col-xs-6">
                                             <div class="post-time"><p>{{$ads->created_at->diffForHumans()}}</p></div>
 
-                                            <a href="{{route('show.categories.ads',['id' => $ads->category_id])}}" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }} </a>
+                                            <a href="{{route('show.categories.ads',['id' => $ads->category_id,'type' => 1])}}" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }} </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-2 col-xs-4">
-                                    <a href="#"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
+                                    <a href="{{route('ads.show',['id' => $ads->id])}}"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
                                 </div>
                             </div>
                             @endforeach
@@ -86,16 +75,16 @@
                                             <a class="ads-tap-title" href="{{route('ads.show',['id' => $ads->id])}}"><h3>{{$ads->title}}</h3></a>
                                             <div class="row">
                                                 <div class="col-xs-6">
-                                                    <a class="city" href="#"><i class="fa fa-map-marker"></i> {{$ads->city}}</a>
+                                                    <span class="city" style="margin-top: 26px;color: #076daf"><i class="fa fa-map-marker"></i> {{$ads->city}}</span>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="post-time"><p>{{$ads->created_at->diffForHumans()}}</p></div>
-                                                    <a href="#" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }}</a>
+                                                    <a href="{{route('show.categories.ads',['id' => $ads->category_id,'type' => 1])}}" class="d-block user-post"><i class="fa fa-th-large"></i> {{ \App\Category::find($ads->category_id)->name }}</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 col-xs-4">
-                                            <a href="#"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
+                                            <a href="{{route('ads.show',['id' => $ads->id])}}"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
                                         </div>
                                     </div>
 
@@ -112,20 +101,20 @@
                                     @foreach($commonAds as $ads)
                                     <div class="row pt-10 pb-10 post">
                                         <div class="col-sm-10 col-xs-8">
-                                            <a class="ads-tap-title" href="#"><h3>{{$ads->title}}</h3></a>
+                                            <a class="ads-tap-title" href="{{route('ads.show',['id' => $ads->id])}}"><h3>{{$ads->title}}</h3></a>
                                             <div class="row">
                                                 <div class="col-xs-6">
-                                                    <a class="city" href="#"><i class="fa fa-map-marker"></i>{{$ads->city}}</a>
+                                                    <span class="city" style="margin-top: 26px;color: #076daf"><i class="fa fa-map-marker"></i> {{$ads->city}}</span>
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="post-time"><p> {{$ads->created_at->diffForHumans()}}</p></div>
 
-                                                    <a href="#" class="d-block user-post"><i class="fa fa-th-large"></i>  {{ \App\Category::find($ads->category_id)->name }} </a>
+                                                    <a href="{{route('show.categories.ads',['id' => $ads->category_id,'type' => 1])}}" class="d-block user-post"><i class="fa fa-th-large"></i>  {{ \App\Category::find($ads->category_id)->name }} </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 col-xs-4">
-                                            <a href="#"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
+                                            <a href="{{route('ads.show',['id' => $ads->id])}}"><img class="margin-auto img-responsive" src="{{$ads->image_1}}"></a>
                                         </div>
                                     </div>
                                     @endforeach
@@ -138,33 +127,31 @@
                     </div>
 
                     <!-- table before adds section -->
-                    <div class="recommended-info tble-sectn">
+                     <div class="recommended-info tble-sectn">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="section recommended-ads" id="want-ads">
-                                    <h4 class="wa-block">Applications <a
-                                            href="signin.php?location=http://tashlee7sa.com/want-ads.php"
-                                            class="btn pull-right">All orders</a></h4>
+                                    <h4 class="wa-block">Requests 
+                                    <a href="{{route('request.index')}}" class="btn pull-right">All Requests</a></h4>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Address</th>
-                                                <th>User name</th>
-                                                <th>Call</th>
+                                                <th width="60%">Title</th>
+                                                <th width="20%">User Name</th>
+                                                <th width="20%">Date of Add Request</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                        @forelse($requests as $req)
                                             <tr>
-                                                <td><b>test1</b></td>
-                                                <td>user1</td>
-                                                <td>123456789</td>
+                                                <td><b><a href="{{route('request.show',['id' => $req->id])}}">{{$req->title}}</a></b></td>
+                                                <td>{{\App\User::find($req->user_id)->name }}</td>
+                                                <td>{{$req->created_at->diffForHumans()}}</td>
                                             </tr>
-                                            <tr>
-                                                <td><b>test2</b></td>
-                                                <td>user2</td>
-                                                <td>1211549544</td>
-                                            </tr>
+                                        @empty
+                                            <center>No Requestes Added Yet</center>
+                                        @endforelse
                                             </tbody>
                                         </table>
                                         <!--<div class='text-center'>-->
@@ -195,7 +182,7 @@
 
                         	@foreach($categories as $cat)
                             <li class="category-item">
-                                <a href="categories.php?category=81">
+                                <a href="{{route('show.categories.ads',['id' => $cat->id,'type' => 1])}}">
                                     <div class="category-icon"><img src="{{$cat->image}}" alt="images"
                                                                     width="150" class="img-responsive"></div>
                                     <span class="category-title">{{$cat->name}}</span>

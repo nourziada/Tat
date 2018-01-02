@@ -755,10 +755,10 @@ li.active-category a{
         /*margin-left:0px;*/
 }
 .social{
-    float:right;
+    float:left;
 }
 .contact-info ul.social li {
-    float: right;
+    float: left;
 }
 .sb-img {
     margin-bottom: 40px;
@@ -797,7 +797,7 @@ li.active-category a{
 .drop-down
 {
     width: 100%;
-    text-align: left !important;
+    text-align: right !important;
 }
 .short-b
 {

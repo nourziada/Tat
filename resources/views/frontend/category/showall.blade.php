@@ -16,14 +16,7 @@
         <div class="banner">
 
             <!-- banner-form -->
-            <div class="banner-form">
-                <form action="categories.php" name="search_form" id="search_form" method="get">
-                    <input type="text" class="form-control form-control ui-widget ui-autocomplete-input" id="skills"
-                           name="query" placeholder="Find a specific product" autocomplete="off">
-                    <button type="submit" class="form-control hidden-xs srch" value="Search">Search</button>
-                    <button type="submit" class="visible-xs srch" value="Search"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+            @include('includes.search')
         </div>
 
         <div class="category-info">
@@ -46,7 +39,7 @@
 
                                         @forelse($categories as $cat)
                                             <div class="sub_cat_box">
-                                                <a href="categories-details.php?category=81">
+                                                <a href="{{route('show.categories.ads',['id' => $cat->id,'type' => 1])}}">
                                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
                                                         <div class="sub_img sb-img">
                                                             <img src="{{$cat->image}}"

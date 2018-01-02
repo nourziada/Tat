@@ -10,14 +10,20 @@ use Session;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware('isUser');
+    }
+    
     public function index()
     {
-        //
+        $pageTitle = "TAT | Favorite Ads";
+
+        $allAds = Favorite::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(15);
+
+
+        return view('frontend.favorite.index',compact('pageTitle','allAds'));
     }
 
     /**
@@ -89,8 +95,9 @@ class FavoriteController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $fav = Favorite::where('ads_id',$id)->where('user_id',Auth::user()->id)->first();
+
 
         $fav->delete();
 

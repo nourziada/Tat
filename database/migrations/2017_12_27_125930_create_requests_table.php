@@ -17,6 +17,8 @@ class CreateRequestsTable extends Migration
             $table->increments('id');
             $table->text('title');
             $table->longText('desc');
+            $table->string('image')->nullable();
+            $table->string('city');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

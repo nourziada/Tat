@@ -96,6 +96,36 @@ a:hover, a:focus, input:focus{
 .adpost-details .agreement label {
     margin-bottom: 12px !important;
 }
+.banner-form button.form-control{
+    left: auto;
+    right: -4px;
+    border-color: #0088fd;
+    background-color: #114ba2;
+}
+.banner-form input{
+    margin-left: 0;
+}
+.short-info li i{
+    margin-left: 0;
+    margin-right: 28px;
+}
+.banner-form .form-control{
+    width:100%;
+}
+.contact-info ul.social li a{
+    margin-right: 18px;
+    margin-left: 0;
+}
+.banner-form{
+    max-width: 100%;
+}
+#accordion .panel-body a i{
+    width: 19px;
+    text-align: center;
+}
+.ad-meta{
+    padding-left: 25px !important;
+}
 @media only screen and (max-width : 480px) {
     .city,
     .post-time p,

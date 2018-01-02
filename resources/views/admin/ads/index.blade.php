@@ -52,16 +52,16 @@
                                
                                 <td>
                                     
-                                    <a target="_blank" href="" class="btn btn-primary btn-xs" data-title="Show"><span class="glyphicon glyphicon-eye-open"></span></a> 
+                                    <a target="_blank" href="{{route('ads.show',['id' => $ad->id])}}" class="btn btn-primary btn-xs" data-title="Show"><span class="glyphicon glyphicon-eye-open"></span></a> 
                                    
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteModal" ><span class="glyphicon glyphicon-trash"></span>
-                                    <input type="hidden" value="{{$deletedid = $ad->id}}">
+                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteModal{{$ad->id}}" ><span class="glyphicon glyphicon-trash"></span>
+                                    
                                     </button> 
                                 </td>
                             </tr>
-                            @endforeach
+
                             <!-- Modal -->
-                            <div id="deleteModal" class="modal fade" role="dialog">
+                            <div id="deleteModal{{$ad->id}}" class="modal fade" role="dialog">
                               <div class="modal-dialog">
 
                                 <!-- Modal content-->
@@ -76,7 +76,7 @@
                                   <div class="modal-footer">
 
                                   <span>
-                                     <form action="{{route('delete.admin.ads',['id' => $deletedid])}}" method="post">
+                                     <form action="{{route('delete.admin.ads',['id' => $ad->id])}}" method="post">
                                         {{ csrf_field() }}
                                         <button class="btn btn-danger" type="submit">Delete</button>
                                     </form>
@@ -87,6 +87,8 @@
 
                               </div>
                             </div>
+                            @endforeach
+                            
                         @else
 
                         @endif

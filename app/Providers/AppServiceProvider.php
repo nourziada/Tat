@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Category;
 use App\Report;
 use App\Setting;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::share('settings' , Setting::first());
         View::share('reportsAll' , Report::all());
+        View::share('firstCategory' , Category::first());
 
     }
 

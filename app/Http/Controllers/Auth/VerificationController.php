@@ -18,7 +18,8 @@ class VerificationController extends Controller
 	    	if($user->verified == 1) {
 	    		return redirect()->route('index.home');
 	    	}else{
-	    		return view('auth.verification');
+	    		$pageTitle = "TAT | Verification";
+	    		return view('auth.verification',compact('pageTitle'));
 	    	}
     	}else{
     		return redirect()->route('login');

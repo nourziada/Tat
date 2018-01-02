@@ -36,6 +36,18 @@ Route::get('/verification', 'Auth\VerificationController@showVerification')->nam
 Route::post('/verification', 'Auth\VerificationController@verification')->name('verification.user');
 
 Route::post('/verification/resend', 'Auth\VerificationController@reSendVerificationToken')->name('verification.resend');
+
+
+/*
+|-----------------------
+| Profile Routes
+|-----------------------
+*/
+
+Route::get('/profile','Auth\ProfileController@showProfile')->name('profile.show');
+Route::post('/profile/update','Auth\ProfileController@updateProfile')->name('profile.update');
+
+
 /*
 |-----------------------
 | Advertising Routes
@@ -56,13 +68,26 @@ Route::resource('/favorite','FrontEnd\FavoriteController');
 
 /*
 |-----------------------
+| Requests Routes
+|-----------------------
+*/
+Route::get('/myrequest','FrontEnd\RequestsController@ShowMyRequests')->name('show.myrequests');
+Route::resource('/request','FrontEnd\RequestsController');
+
+
+/*
+|-----------------------
 | Categories Routes
 |-----------------------
 */
 
 Route::get('/categories','FrontEnd\CategoryController@showAllCategory')->name('show.categories');
 
-Route::get('/categories/ads/{id}','FrontEnd\CategoryController@showAllCategoryAds')->name('show.categories.ads');
+Route::get('/categories/ads/{id}/{type}','FrontEnd\CategoryController@showAllCategoryAds')->name('show.categories.ads');
+
+Route::get('/categories/result/ads' , 'FrontEnd\CategoryController@Search')->name('search.ads');
+
+Route::post('/categories/ads/price','FrontEnd\CategoryController@showAllCategoryAdsPrice')->name('show.categories.ads.price');
 
 /*
 |-----------------------

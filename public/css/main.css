@@ -296,7 +296,7 @@ textarea {
 
 .sign-in li:last-child:after {
 	position: absolute;
-	left: 7px;
+	left: 6px;
 	top: 50%;
 	background-image: url(../images/1.png);
 	background-repeat: no-repeat;
@@ -428,6 +428,7 @@ textarea {
 	border-radius: 0;
 	font-family: 'MyriadPro-Regular', sans-serif;
 	border: none;
+	margin-left: -4px;
 }
 
 .banner-form .form-control, 
@@ -1295,7 +1296,7 @@ transform: scale(1.05) rotate(2deg);
 }
 
 .breadcrumb>li+li:before {
-	content: "\f177";
+	content: "\f178";
 	font-family: FontAwesome;
 	color: #fff;
 }
@@ -1684,8 +1685,7 @@ transform: scale(1.05) rotate(2deg);
 }
 
 #product-carousel .carousel-indicators {
-	bottom:-55px;
-	left: 50px !important;
+	bottom:-140px;
 }
 
 #product-carousel .carousel-indicators li,
@@ -4114,4 +4114,12 @@ input, select, a, .transition,
         top: 1px;
         left: 146px;
     }
+}
+
+.ads_item2 {
+	border: 1px solid #f3f3f3;
+    margin: 18px 0;
+    min-height: 152px;
+    border-radius: 2px;
+    max-height: 152px;
 }

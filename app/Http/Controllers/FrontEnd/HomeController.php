@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Ads;
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Requestt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Session;
@@ -28,9 +29,12 @@ class HomeController extends Controller
     	// 7 Categories
     	$categories = Category::orderBy('created_at','desc')->take(7)->get();
 
+        // get All Requests 
+        $requests = Requestt::orderBy('created_at','desc')->take(7)->get();
+
         $pageTitle = 'TAT | Index';
 
-    	return view('index',compact('newAds','commonAds','featuredAds','categories','pageTitle'));
+    	return view('index',compact('newAds','commonAds','featuredAds','categories','pageTitle','requests'));
     }
 
     public function showContactForm(){

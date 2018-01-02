@@ -10,21 +10,12 @@
 			<div class="breadcrumb-section">
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="">{{\App\Category::find($ads->category_id)->name}}</a></li>
+					<li><a href="{{route('index.home')}}">Home</a></li>
+					<li><a href="{{route('show.categories.ads',['id' => \App\Category::find($ads->category_id)->id,'type' => 1])}}">{{\App\Category::find($ads->category_id)->name}}</a></li>
 				</ol><!-- breadcrumb -->						
 			</div>
 
-			<div class="banner-section text-center">
-				<div class="banner-form">
-					<form action="categories.php" name="search_form" id="search_form" method="get">
-						<input type="text" class="form-control form-control ui-widget ui-autocomplete-input" id="skills" name="query" placeholder="Find a specific product" autocomplete="off">
-						<button type="submit" class="form-control hidden-xs srch" value="Search">Search</button>
-						<button type="submit" class="visible-xs srch" value="Search"><i class="fa fa-search"></i></button>
-					</form>
-				</div>
-				<!-- banner-form -->
-			</div>
+			@include('includes.search')
 
 			<!-- banner -->
 	
@@ -37,17 +28,26 @@
 							<!-- Indicators -->
 							<ol class="carousel-indicators">
 								<li data-target="#product-carousel" data-slide-to="0" class="active">
-									<img src="{{$ads->image_1}}" alt="Carousel Thumb" class="img-responsive">
+									<img src="{{$ads->image_1}}" class="img-responsive">
 								</li>
+
+								@if($ads->image_2 != null)
 								<li data-target="#product-carousel" data-slide-to="1">
-									<img src="{{$ads->image_2}}" alt="Carousel Thumb" class="img-responsive">
+									<img src="{{$ads->image_2}}"  class="img-responsive">
 								</li>
+								@endif
+
+								@if($ads->image_3 != null)
 								<li data-target="#product-carousel" data-slide-to="2">
-									<img src="{{$ads->image_3}}" alt="Carousel Thumb" class="img-responsive">
+									<img src="{{$ads->image_3}}"  class="img-responsive">
 								</li>
+								@endif
+
+								@if($ads->image_4 != null)
 								<li data-target="#product-carousel" data-slide-to="3">
-									<img src="{{$ads->image_4}}" alt="Carousel Thumb" class="img-responsive">
+									<img src="{{$ads->image_4}}"  class="img-responsive">
 								</li>
+								@endif
 								
 							</ol>
 

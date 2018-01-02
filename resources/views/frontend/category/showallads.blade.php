@@ -43,14 +43,7 @@
         <div class="banner">
 
             <!-- banner-form -->
-            <div class="banner-form banner-form-full">
-                <form action="#" name="search_form" id="search_form" method="get">
-                    <input type="hidden" name="category" value="83">
-                    <input type="text" class="form-control ui-widget" id="skills" name="query" value=""
-                           placeholder="Find a specific product" autocomplete="off">
-                    <button type="submit" class="form-control srch" value="Search">Search</button>
-                </form>
-            </div><!-- banner-form -->
+            @include('includes.search')
         </div>
 
 
@@ -85,7 +78,7 @@
                                             		active-category
                                             	@endif	
                                             	">
-                                            	<a href="{{route('show.categories.ads',['id' => $cat->id])}}">
+                                            	<a href="{{route('show.categories.ads',['id' => $cat->id,'type' => 1])}}">
                                                 <i class="fa fa-mobile" aria-hidden="true"></i> {{$cat->name}}
                                                 </a>
 
@@ -124,17 +117,18 @@
                                             <div class="price">
                                               
 
-                                                <span>$60000 - <strong>$100 </strong></span>
+                                                <span>${{$maxPrice}} - <strong>${{$minPrice}} </strong></span>
 
-                                                <input type="text" value="" data-slider-min="0" data-slider-max="60000"
-                                                       data-slider-step="5" data-slider-value="[100,60000]"
+                                                <input type="text" value="" data-slider-min="{{$minPrice}}" data-slider-max="{{$maxPrice}}"
+                                                       data-slider-step="5" data-slider-value="[{{$minPrice}},{{$maxPrice}}]"
                                                        id="price"><br/>       
 
-                                                <form name="change_price" id="change_price" method="get"
-                                                      action="/categories.php">
-                                                    <input type="hidden" name="category" value="83">
-                                                    <input type="hidden" name="minprice" value="" id="price_min">
-                                                    <input type="hidden" name="maxprice" value="" id="price_max">
+                                                <form name="change_price" id="change_price" method="post"
+                                                      action="{{route('show.categories.ads.price')}}">
+                                                      {{csrf_field()}}
+                                                    <input type="hidden" name="category_id" value="{{$id}}">
+                                                    <input type="hidden" name="minPrice" value="" id="price_min">
+                                                    <input type="hidden" name="maxPrice" value="" id="price_max">
                                                     <button type="submit" class="btn btn-primary btn-xs custom-button">
 Go!
                                                     </button>
@@ -144,63 +138,10 @@ Go!
                                         </div><!--/price-range-->
                                     </div><!-- panel-body -->
                                 </div>
-                            </div><!-- panel -->
-
+                            </div>
                             <!-- panel -->
-                            <!-- <div class="panel-default panel-faq"
-                                <div class="panel-heading">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#accordion-four">
-                                        <h4 class="panel-title">
-                                        Posted By
-                                        <span class="pull-right"><i class="fa fa-plus"></i></span>
-                                        </h4>
-                                    </a>
-                                </div>
 
-                                <div id="accordion-four" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <label for="individual"><input type="checkbox" name="individual" id="individual"> Individual</label>
-                                        <label for="dealer"><input type="checkbox" name="dealer" id="dealer"> Dealer</label>
-                                        <label for="reseller"><input type="checkbox" name="reseller" id="reseller"> Reseller</label>
-                                        <label for="manufacturer"><input type="checkbox" name="manufacturer" id="manufacturer"> Manufacturer</label>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- panel -->
-                            <!-- <div class="panel-default panel-faq">
-                                <div class="panel-heading">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#accordion-five">
-                                        <h4 class="panel-title">
-                                        Brand
-                                        <span class="pull-right"><i class="fa fa-plus"></i></span>
-                                        </h4>
-                                    </a>
-                                </div>
-
-                                <div id="accordion-five" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <input type="text" placeholder="Search Brand" class="form-control">
-                                        <label for="apple"><input type="checkbox" name="apple" id="apple"> Apple</label>
-                                        <label for="htc"><input type="checkbox" name="htc" id="htc"> HTC</label>
-                                        <label for="micromax"><input type="checkbox" name="micromax" id="micromax"> Micromax</label>
-                                        <label for="nokia"><input type="checkbox" name="nokia" id="nokia"> Nokia</label>
-                                        <label for="others"><input type="checkbox" name="others" id="others"> Others</label>
-                                        <label for="samsung"><input type="checkbox" name="samsung" id="samsung"> Samsung</label>
-                                            <span class="border"></span>
-                                        <label for="acer"><input type="checkbox" name="acer" id="acer"> Acer</label>
-                                        <label for="bird"><input type="checkbox" name="bird" id="bird"> Bird</label>
-                                        <label for="blackberry"><input type="checkbox" name="blackberry" id="blackberry"> Blackberry</label>
-                                        <label for="celkon"><input type="checkbox" name="celkon" id="celkon"> Celkon</label>
-                                        <label for="ericsson"><input type="checkbox" name="ericsson" id="ericsson"> Ericsson</label>
-                                        <label for="fly"><input type="checkbox" name="fly" id="fly"> Fly</label>
-                                        <label for="g-fone"><input type="checkbox" name="g-fone" id="g-fone"> g-Fone</label>
-                                        <label for="gionee"><input type="checkbox" name="gionee" id="gionee"> Gionee</label>
-                                        <label for="haier"><input type="checkbox" name="haier" id="haier"> Haier</label>
-                                        <label for="hp"><input type="checkbox" name="hp" id="hp"> HP</label>
-                                    </div>
-                                </div>
-                            </div> -->
+                            
                         </div><!-- panel-group -->
                     </div>
                 </div><!-- accordion-->
@@ -217,30 +158,33 @@ Go!
                                 <!-- category-change -->
                                 <div class="dropdown category-dropdown sort-b">
                                     <h5 class="short-b">Sort by:</h5>
-                                    <a data-toggle="dropdown" href="#"><span class="change-text filters">All</span></a>
-                                    <i class="fa fa-caret-square-o-down"></i>
-                                    <form name="shorting" id="shorting" method="get" action="/categories.php">
-                                        <ul class="dropdown-menu drop-m category-change">
-                                            <li><a href="
-										http://tashlee7sa.com/categories.php?category=83&subcategory=164&featured=1											"
-                                                   onchange="this.form.submit()">Featured</a></li>
-                                            <li><a href="
-										http://tashlee7sa.com/categories.php?category=83&subcategory=164&newest=1											"
-                                                   onchange="this.form.submit()">Newest</a></li>
-                                            <li><a href="
-										http://tashlee7sa.com/categories.php?category=83&subcategory=164&all=1											"
-                                                   onchange="this.form.submit()">All</a></li>
-                                        </ul>
 
-                                    </form>
+
+                                    <a data-toggle="dropdown" href="#">
+                                        <span class="change-text filters">All</span>
+                                    </a>
+
+
+                                    <i class="fa fa-caret-square-o-down"></i>
+
+                                    
+                                    <ul class="dropdown-menu drop-m category-change">
+                                        <li><a href="{{route('show.categories.ads',['id' => $id,'type' => 2])}}">Featured</a></li>
+                                        <li><a href="{{route('show.categories.ads',['id' => $id,'type' => 3])}}">Newest</a></li>
+                                        <li><a href="{{route('show.categories.ads',['id' => $id,'type' => 1])}}">All</a></li>
+                                    </ul>
+
+                                    
                                 </div><!-- category-change -->
                             </div>
                         </div><!-- featured-top -->
-                        <div class="ad-item row">
+
+                    @forelse($allAds as $ads)  
+                        <div class="ads_item2 row">
                             <!-- item-image -->
                             <div class="item-image-box col-sm-3">
                                 <div class="item-image">
-                                    <a href="details.html"><img src="images/listing/1.jpg" alt="Image" class="img-responsive"></a>
+                                    <a href="{{route('ads.show',['id' => $ads->id])}}"><img src="{{$ads->image_1}}" alt="Image" class="img-responsive"></a>
                                 </div><!-- item-image -->
                             </div>
 
@@ -248,74 +192,43 @@ Go!
                             <div class="item-info col-sm-9">
                                 <!-- ad-info -->
                                 <div class="ad-info">
-                                    <h3 class="item-price">$800.00</h3>
-                                    <h4 class="item-title"><a href="#">Apple TV - Everything you need to know!</a></h4>
+                                    <h3 class="item-price">${{$ads->price}}</h3>
+                                    <h4 class="item-title"><a href="{{route('ads.show',['id' => $ads->id])}}">{{$ads->title}}</a></h4>
                                     <div class="item-cat">
-                                        <span><a href="#">Electronics &amp; Gedgets</a></span> /
-                                        <span><a href="#">Tv &amp; Video</a></span>
+                                        <span><a href="{{route('show.categories.ads',['id' => $ads->category_id,'type' => 1])}}">{{\App\Category::find($ads->category_id)->name}}</a></span> 
+                                        
                                     </div>
                                 </div><!-- ad-info -->
 
                                 <!-- ad-meta -->
                                 <div class="ad-meta">
                                     <div class="meta-content">
-                                        <span class="dated"><a href="#">7 Jan, 16  10:10 pm </a></span>
-                                        <a href="#" class="tag"><i class="fa fa-tags"></i> New</a>
+                                        <span class="dated">{{$ads->created_at->diffforHumans()}}</span>
+
+
+                                        <a href="{{route('show.categories.ads',['id' => $ads->category_id,'type' => 1])}}" class="tag"><i class="fa fa-tags"></i> {{\App\Category::find($ads->category_id)->name}}</a>
                                     </div>
                                     <!-- item-info-right -->
                                     <div class="user-option pull-right">
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Individual"><i class="fa fa-user"></i> </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$ads->city}}"><i class="fa fa-map-marker"></i> </a>
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{\App\User::find($ads->user_id)->name}}"><i class="fa fa-user"></i> </a>
                                     </div><!-- item-info-right -->
                                 </div><!-- ad-meta -->
 
 
                             </div><!-- item-info -->
                         </div>
-                        <!-- ad-item -->
-                        <div class="ad-item row">
-                            <div class="item-image-box col-sm-3">
-                                <!-- item-image -->
-                                <div class="item-image">
-                                    <a href="details.html"><img src="images/listing/7.jpg" alt="Image" class="img-responsive"></a>
-                                </div><!-- item-image -->
-                            </div><!-- item-image-box -->
 
-                            <!-- rending-text -->
-                            <div class="item-info col-sm-9">
-                                <!-- ad-info -->
-                                <div class="ad-info">
-                                    <h3 class="item-price">$890.00 <span>(Negotiable)</span></h3>
-                                    <h4 class="item-title"><a href="#">Philips Streo Headphone</a></h4>
-                                    <div class="item-cat">
-                                        <span><a href="#">Electronics &amp; Gedgets</a></span> /
-                                        <span><a href="#">Mobile Phone</a></span>
-                                    </div>
-                                </div><!-- ad-info -->
-
-                                <!-- ad-meta -->
-                                <div class="ad-meta">
-                                    <div class="meta-content">
-                                        <span class="dated"><a href="#">7 Jan, 16  10:10 pm </a></span>
-                                        <a href="#" class="tag"><i class="fa fa-tags"></i> Used</a>
-                                    </div>
-                                    <!-- item-info-right -->
-                                    <div class="user-option pull-right">
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Los Angeles, USA"><i class="fa fa-map-marker"></i> </a>
-                                        <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Individual"><i class="fa fa-user"></i> </a>
-                                    </div><!-- item-info-right -->
-                                </div><!-- ad-meta -->
-                            </div><!-- item-info -->
-                        </div>
+                   
+                    @empty
                         <center>No results found!</center>
+
+                    @endforelse
+
                         <div class="text-center">
-                            <ul class="pagination ">
-                                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                            </ul>
+                            
+                                {{$allAds->links()}}
+                            
                         </div>
                     </div>
                 </div><!-- recommended-ads -->
@@ -332,7 +245,7 @@ Go!
             <div class="col-sm-12 text-center">
                 <h2 class="title">Do you have something-sell?</h2>
                 <h4>Post your ad for free on Trade.com</h4>
-                <a href="ad-post.html" class="btn btn-primary">Post Your Ad</a>
+                <a href="{{route('ads.create')}}" class="btn btn-primary">Post Your Ad</a>
             </div>
         </div><!-- row -->
     </div><!-- contaioner -->
